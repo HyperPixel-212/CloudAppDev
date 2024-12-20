@@ -1,0 +1,30 @@
+<!-- app/views/catalog/index.html.erb -->
+<h1>Catalog</h1>
+
+<!-- Filter/Search Form (optional) -->
+<%= form_with url: catalog_index_path, method: :get, local: true, class: "mb-4" do |f| %>
+  <div class="form-group">
+    <%= f.label :search, "Search Catalog" %>
+    <%= f.text_field :search, class: "form-control", placeholder: "Search by name or description" %>
+  </div>
+  <%= f.submit "Search", class: "btn btn-primary" %>
+<% end %>
+
+<!-- Display the Catalog Items -->
+<div class="row">
+  <% @catalog.each do |item| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <!-- Display the item image, if available -->
+        <%= image_tag item["image_url"], class: "card-img-top", alt: item["name"] if item["image_url"].present? %>
+        <div class="card-body">
+          <h5 class="card-title"><%= item["name"] %></h5>
+          <p class="card-text"><%= truncate(item["description"], length: 100) %></p>
+          <p class="card-text"><strong>Price: </strong><%= number_to_currency(item["price"]) %></p>
+          <%= link_to 'View Details', '#', class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

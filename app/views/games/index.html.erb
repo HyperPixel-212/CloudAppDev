@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Games" %>
+<h2>Games</h2>
+
+<%= search_form_for @q, url: games_path, method: :get do |f| %>
+  <div class="form-group">
+    <%= f.label :name_cont, "Search by name" %>
+    <%= f.text_field :name_cont, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Search", class: "btn btn-primary" %>
+<% end %>
+
+<div id="games">
+  <% @games.each do |games| %>
+    <p>
+  <div class="d-grid gap-1">
+    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+   
+          <div class="card-header">Name: <%= games.name%></div>
+            <div class="card-body">
+              <p class="card-text">Description:<%= games.description%></p>
+            <p class="card-text">Publisher:<%= games.publisher%></p>
+          <p class="card-text">Price:<%= games.price%></p>
+        
+      </div>
+    </div>
+  </div>
+    </p>
+    <%= link_to "Show this game", games %>
+  <% end %>
+</div>
+
+<%= link_to "New game", new_game_path, class: "btn btn-success"%>
+</div>
+
+<style>
+    .bg-cyan {
+      background-color: cyan;
+    }
+  </style>
+  <body class="bg-cyan">
+
+</div>

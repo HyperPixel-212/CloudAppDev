@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Shop items" %>
+<h2>Shop items</h2>
+
+<%= search_form_for @q, url: shop_items_path, method: :get do |f| %>
+  <div class="form-group">
+    <%= f.label :name_cont, "Search by name" %>
+    <%= f.text_field :name_cont, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Search", class: "btn btn-primary" %>
+<% end %>
+
+<div id="shop_items">
+  <% @shop_items.each do |shop_item| %>
+    <p>
+      <div class="d-grid gap-1">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+          
+              <div class="card-header">Name: <%= shop_item.name%></div>
+                <div class="card-body">
+              <p class="card-text">Description:<%= shop_item.description%></p>
+            <p class="card-text">Stock:<%= shop_item.amount%></p>
+          <p class="card-text">Price:<%= shop_item.price%></p>
+        
+      </div>
+    </div>
+  </div>
+    </p>
+    <%= link_to "Show this shop item", shop_item %>
+  <% end %>
+</div>
+
+<%= link_to "New shop item", new_shop_item_path, class: "btn btn-success"%>
+</div>
+
+<style>
+    .bg-cyan {
+      background-color: cyan;
+    }
+  </style>
+  <body class="bg-cyan">
+
+</div>
