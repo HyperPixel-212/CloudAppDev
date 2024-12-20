@@ -27,7 +27,7 @@ jobs:
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
-    scan_js:
+  scan_js:
     runs-on: ubuntu-latest
 
     steps:
@@ -58,8 +58,8 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-        - name: Set executable
-          run: chmod +x bin/rubocop
+      - name: Set executable
+        run: chmod +x bin/rubocop
 
       - name: Lint code for consistent style
         run: bin/rubocop -f github
